@@ -3,9 +3,9 @@ import React from "react";
 
 export const BrandLogo = () => {
   return (
-    <span className="flex items-center gap-2 font-semibold flex-shrink-0 text-lg ">
+    <span className="flex flex-shrink-0 items-center gap-2 text-lg font-semibold">
       <Map className="size-8" />
-      <span>Price Align</span>
+      <span>Price Aligned</span>
     </span>
   );
 };

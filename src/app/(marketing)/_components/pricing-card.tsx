@@ -50,11 +50,11 @@ const PricingCard = ({
           {maxNumberOfProducts}{" "}
           {maxNumberOfProducts === 1 ? "product" : "products"}
         </Feature>
-        <Feature>Price Align discounts</Feature>
+        <Feature>Price Aligned discounts</Feature>
         {canAccessAnalytics && <Feature>Advanced analytics</Feature>}
         {canCustomizeBanner && <Feature>Banner customization</Feature>}
         {canRemoveBranding && (
-          <Feature>Remove Easy Price Align branding</Feature>
+          <Feature>Remove Easy Price Aligned branding</Feature>
         )}
       </CardFooter>
     </Card>
