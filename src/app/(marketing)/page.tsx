@@ -4,6 +4,11 @@ import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { NeonIcon } from "./_icons/neon";
 import { ClerkIcon } from "./_icons/clerk";
+import {
+  subscriptionTiers,
+  subscriptionTiersInOrder,
+} from "@/data/subscriptions-tier";
+import PricingCard from "./_components/pricing-card";
 
 export default function Home() {
   return (
@@ -62,10 +67,14 @@ export default function Home() {
         </div>
       </section>
       <section id="pricing" className="bg-accent/5 px-8 py-16">
-        <h2 className="text-balance text-center text-4xl font-semibold">
+        <h2 className="mb-8 text-balance text-center text-4xl font-semibold">
           Pricing software which pays for itself 20x over
         </h2>
-        <div className="mx-auto grid max-w-screen-xl grid-cols-2 gap-4 lg:grid-cols-4"></div>
+        <div className="mx-auto grid max-w-screen-xl grid-cols-2 gap-4 lg:grid-cols-4">
+          {subscriptionTiersInOrder.map((tier) => (
+            <PricingCard key={tier.name} {...tier} />
+          ))}
+        </div>
       </section>
     </>
   );
