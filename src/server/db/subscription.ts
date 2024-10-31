@@ -4,5 +4,8 @@ import { UserSubscriptionTable } from "@/drizzle/schema";
 export function createUserSubscription(
   data: typeof UserSubscriptionTable.$inferInsert,
 ) {
-  return db.insert(UserSubscriptionTable).values(data);
+  return db
+    .insert(UserSubscriptionTable)
+    .values(data)
+    .onConflictDoNothing({ target: UserSubscriptionTable.clerkUserId }); //this will ignore insert if clerkUserId is already existing
 }

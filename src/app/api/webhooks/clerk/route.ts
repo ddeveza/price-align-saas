@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { env } from "@/data/env/server";
 import { createUserSubscription } from "@/server/db/subscription";
+import { deleteUser } from "@/server/db/users";
 
 export async function POST(req: Request) {
   // Get the headers
@@ -48,12 +49,10 @@ export async function POST(req: Request) {
       });
       break;
     }
-   /*  case "user.deleted": {
-      if (event.data.id)
-        await db
-          .delete(UserSubscriptionTable)
-          .where(eq(UserSubscriptionTable.clerkUserId, event.data.id));
-      break; */
+    case "user.deleted": {
+      if (event.data.id) await deleteUser(event.data.id);
+
+      break;
     }
   }
 
