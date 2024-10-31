@@ -21,8 +21,8 @@ const PageWithBackButton = ({
           <CaretLeftIcon className="size-8" />
         </Link>
       </Button>
-      <h1>{pageTitle}</h1>
-      <div>{children}</div>
+      <h1 className="self-center text-2xl font-semibold">{pageTitle}</h1>
+      <div className="col-start-2">{children}</div>
     </div>
   );
 };
