@@ -1,4 +1,4 @@
-import { subscriptionTiers } from "@/data/subscriptions-tier";
+import { subscriptionTiers, TierNames } from "@/data/subscriptions-tier";
 import { relations } from "drizzle-orm";
 import {
   boolean,
@@ -31,6 +31,7 @@ export const ProductTable = pgTable(
     createdAt,
     updatedAt,
   },
+  //this one is for faster query (indexing)
   (table) => ({
     clerkUserIdIndex: index("products.clerk_user_id_index").on(
       table.clerkUserId,
