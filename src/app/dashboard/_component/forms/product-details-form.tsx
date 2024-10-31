@@ -3,21 +3,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { productDetailsSchema } from "@/schemas/products";
 import { createProduct } from "@/server/actions/products";
 import { useToast } from "@/hooks/use-toast";
+import CustomFormField from "@/components/forms/custom-form-field";
 
 const ProductDetailsForm = () => {
   const { toast } = useToast();
@@ -47,53 +39,24 @@ const ProductDetailsForm = () => {
         className="flex flex-col gap-6"
       >
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <FormField
-            control={form.control}
+          <CustomFormField
             name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Name</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
+            label="Product Name"
             control={form.control}
+          />
+          <CustomFormField
             name="url"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Enter you website URL</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormDescription>
-                  Include the protocol (http/https) and the full path to the
-                  sale page
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+            control={form.control}
+            label="Enter your website URL"
+            description="Include the protocol (http/https) and the full path to the sale page"
           />
         </div>
-        <FormField
-          control={form.control}
+        <CustomFormField
           name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Product Description</FormLabel>
-              <FormControl>
-                <Textarea {...field} />
-              </FormControl>
-              <FormDescription>
-                An optional description to help distinguish your product from
-                other products
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+          control={form.control}
+          Component={Textarea}
+          label="Product Description"
+          description="An optional description to help distinguish your product from other products"
         />
         <div className="self-end">
           <Button disabled={form.formState.isSubmitting} type="submit">
