@@ -1,3 +1,4 @@
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,6 +18,7 @@ import {
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import AddToSiteProductModalContent from "./add-to-site-modal";
+import DeleteProductAlertDialogContent from "./alert-delete-modal";
 import { ProductType } from "./product-grid";
 
 const ProductCard = ({ id, name, url, description }: ProductType) => {
@@ -28,24 +30,29 @@ const ProductCard = ({ id, name, url, description }: ProductType) => {
             <Link href={`/dashboard/products/${id}/edit`}>{name}</Link>
           </CardTitle>
           <Dialog>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="size-8 p-0">
-                  <div className="sr-only">Action Menu</div>
-                  <DotsHorizontalIcon className="size-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem asChild>
-                  <Link href={`/dashboard/products/${id}/edit`}>Edit</Link>
-                </DropdownMenuItem>
-                <DialogTrigger>
-                  <DropdownMenuItem>Add To Site</DropdownMenuItem>
-                </DialogTrigger>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Delete</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <AlertDialog>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="size-8 p-0">
+                    <div className="sr-only">Action Menu</div>
+                    <DotsHorizontalIcon className="size-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem asChild>
+                    <Link href={`/dashboard/products/${id}/edit`}>Edit</Link>
+                  </DropdownMenuItem>
+                  <DialogTrigger>
+                    <DropdownMenuItem>Add To Site</DropdownMenuItem>
+                  </DialogTrigger>
+                  <DropdownMenuSeparator />
+                  <AlertDialogTrigger asChild>
+                    <DropdownMenuItem>Delete</DropdownMenuItem>
+                  </AlertDialogTrigger>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DeleteProductAlertDialogContent id={id} />
+            </AlertDialog>
             <AddToSiteProductModalContent id={id} />
           </Dialog>
         </div>
