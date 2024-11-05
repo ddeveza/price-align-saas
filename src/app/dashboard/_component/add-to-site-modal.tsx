@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { env } from "@/data/env/client";
+import { DialogClose } from "@radix-ui/react-dialog";
 import { CopyCheckIcon, CopyIcon, CopyXIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -51,6 +52,9 @@ const AddToSiteProductModalContent = ({ id }: { id: string }) => {
           <Icon className="mr-2 size-4" />
           {getChildren(copyState)}
         </Button>
+        <DialogClose asChild>
+          <Button variant="outline">Close</Button>
+        </DialogClose>
       </div>
     </DialogContent>
   );
