@@ -1,15 +1,14 @@
 "use client";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import CustomFormField from "@/components/forms/custom-form-field";
+import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { productDetailsSchema } from "@/schemas/products";
 import { createProduct } from "@/server/actions/products";
-import { useToast } from "@/hooks/use-toast";
-import CustomFormField from "@/components/forms/custom-form-field";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const ProductDetailsForm = () => {
   const { toast } = useToast();
